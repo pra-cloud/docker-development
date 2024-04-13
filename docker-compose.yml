@@ -3,7 +3,7 @@ version: '3.8'
 services:
   backend-service:
     build:
-      context: ./docker/
+      context: ./docker-development/
       dockerfile: Dockerfile
       args:
         - ONGOING_ENVIRONMENT=local
@@ -16,7 +16,9 @@ services:
 
   worker-service:
     build:
-      context: ./docker/
+      context: ./docker-development/
       dockerfile: worker-dockerfile
+     volumes:
+      - ./:/var/www/html
     # Add other configurations for service2 if needed
 
