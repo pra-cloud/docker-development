@@ -1,0 +1,21 @@
+FROM 606244583710.dkr.ecr.eu-west-2.amazonaws.com/hyperzod-php8.1:latest
+
+WORKDIR /var/www/html/
+
+COPY ../* /var/www/html/
+
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+
+RUN ls -la
+
+#RUN composer install --no-scripts --no-autoloader --ansi --no-interaction
+
+
+RUN chown -R root:root /var/www/html/
+
+
+COPY ./supervisor/worker/supervisord.conf /etc/supervisord.conf
+
+#RUN chmod +x ./docker/supervisor/worker/start.sh
+
+CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisord.conf"]

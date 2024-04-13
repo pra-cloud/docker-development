@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  backend-service:
+    build:
+      context: ./docker/
+      dockerfile: Dockerfile
+      args:
+        - ONGOING_ENVIRONMENT=local
+    ports:
+      - "80:80"
+      - "8000:8000"
+    volumes:
+      - ./:/var/www/html
+    # Add other configurations for service1 if needed
+
+  worker-service:
+    build:
+      context: ./docker/
+      dockerfile: worker-dockerfile
+    # Add other configurations for service2 if needed
+
