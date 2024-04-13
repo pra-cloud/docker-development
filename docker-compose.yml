@@ -18,7 +18,5 @@ services:
     build:
       context: ./docker-development/
       dockerfile: worker-dockerfile
-     volumes:
+    volumes:
       - ./:/var/www/html
-    # Add other configurations for service2 if needed
-
